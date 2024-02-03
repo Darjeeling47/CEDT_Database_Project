@@ -152,7 +152,7 @@ INSERT INTO search_records (user_id, search_records_timestamp, location_link, fo
 (6, '2024-02-03 20:00:00', 'http://maps.google.com/...', 'Japan', 3, 12, 18, 2);;
 
 -- Reserves Table
-INSERT INTO reserves (user_id, time_slot_id, table_id, preferred_name, amount, search_id) VALUES
+INSERT INTO reserves (user_id, timeslot_id, table_id, preferred_name, amount, search_id) VALUES
 (1, 3, 7, 'John Doe', 1, 1),
 (2, 1, 7, 'Jane Smith', 2, 2),
 (3, 2, 7, 'Bob Jones', 1, 1),

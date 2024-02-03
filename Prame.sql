@@ -11,4 +11,4 @@ DELETE FROM restaurant WHERE restaurant_id = 1;
 
 -- 27.Query - view_reserve(reserve_id) : ดูการจองที่ต้องการ
 SELECT R.reserve_id, U.user_name, T.timeslot_date, T.start_time, T.end_time, RS.restaurant_name, B.branch_id, BT.table_number FROM reserves R, users U, timeslots T, branch_tables BT, branches B, restaurants RS
-WHERE (R.user_id = U.user_id) AND (R.time_slot_id = T.time_slot_id) AND (R.branch_id = B.branch_id) AND (B.restaurant_id = RS.restaurant_id) AND (BT.table_id = R.table_id) AND U.user_id = 1;
+WHERE (R.user_id = U.user_id) AND (R.time_slot_id = T.timeslot_id) AND (BT.branch_id = B.branch_id) AND (B.restaurant_id = RS.restaurant_id) AND (BT.table_id = R.table_id) AND U.user_id = 1;

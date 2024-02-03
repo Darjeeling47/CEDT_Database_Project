@@ -31,10 +31,10 @@ CREATE TABLE branches(
 	branch_id SERIAL, -- Unique identifier for the branch
 	province_id INT NOT NULL, -- Foreign key referencing province_id in provinces table
 	branch_type VARCHAR(255) DEFAULT NULL, -- Type of branch
-	open_time TIMETZ NOT NULL, -- Opening time
-	close_time TIMETZ NOT NULL, -- Closing time
+	open_time TIME NOT NULL, -- Opening time
+	close_time TIME NOT NULL, -- Closing time
 	telephone_number VARCHAR(40) DEFAULT NULL, -- Branch telephone number
-	rating REAL DEFAULT 0, -- Rating of the branch
+	rating NUMERIC DEFAULT 0, -- Rating of the branch
 	max_capacity INT DEFAULT 0, -- Maximum capacity of the branch
 	parking_amount INT DEFAULT 0, -- Amount of parking available
 	restaurant_id INT NOT NULL, -- Foreign key referencing restaurant_id in restaurants table
@@ -69,19 +69,19 @@ CREATE TABLE branch_tables(
 -- Food Limitation Table
 CREATE TABLE food_limitation(
 	food_limitation_id SERIAL, -- Unique identifier for the food limitation
-	have_cow_milk BOOL DEFAULT FALSE, -- Flag for cow milk restriction
-	have_egg BOOL DEFAULT FALSE, -- Flag for egg restriction
-	have_tree_nut BOOL DEFAULT FALSE, -- Flag for tree nut restriction
-	have_peanut BOOL DEFAULT FALSE, -- Flag for peanut restriction
-	have_shellfish BOOL DEFAULT FALSE, -- Flag for shellfish restriction
-	have_fish BOOL DEFAULT FALSE, -- Flag for fish restriction
-	have_soy BOOL DEFAULT FALSE, -- Flag for soy restriction
-	have_wheat BOOL DEFAULT FALSE, -- Flag for wheat restriction
-	have_sesame BOOL DEFAULT FALSE, -- Flag for sesame restriction
-	is_halal BOOL DEFAULT FALSE, -- Flag for halal food
-	is_kosher BOOL DEFAULT FALSE, -- Flag for kosher food
-	is_vegeterian BOOL DEFAULT FALSE, -- Flag for vegetarian food
-	is_zhai BOOL DEFAULT FALSE, -- Flag for zhai food
+	have_cow_milk BOOLEAN DEFAULT FALSE, -- Flag for cow milk restriction
+	have_egg BOOLEAN DEFAULT FALSE, -- Flag for egg restriction
+	have_tree_nut BOOLEAN DEFAULT FALSE, -- Flag for tree nut restriction
+	have_peanut BOOLEAN DEFAULT FALSE, -- Flag for peanut restriction
+	have_shellfish BOOLEAN DEFAULT FALSE, -- Flag for shellfish restriction
+	have_fish BOOLEAN DEFAULT FALSE, -- Flag for fish restriction
+	have_soy BOOLEAN DEFAULT FALSE, -- Flag for soy restriction
+	have_wheat BOOLEAN DEFAULT FALSE, -- Flag for wheat restriction
+	have_sesame BOOLEAN DEFAULT FALSE, -- Flag for sesame restriction
+	is_halal BOOLEAN DEFAULT FALSE, -- Flag for halal food
+	is_kosher BOOLEAN DEFAULT FALSE, -- Flag for kosher food
+	is_vegeterian BOOLEAN DEFAULT FALSE, -- Flag for vegetarian food
+	is_zhai BOOLEAN DEFAULT FALSE, -- Flag for zhai food
 	PRIMARY KEY(food_limitation_id) -- Primary key constraint
 );
 
@@ -127,14 +127,14 @@ CREATE TABLE search_records(
 -- Reserves Table
 CREATE TABLE reserves(
 	user_id INT NOT NULL, -- Foreign key referencing user_id in users table
-	time_slot_id INT NOT NULL, -- Foreign key referencing time_slot_id in timeslots table
+	timeslot_id INT NOT NULL, -- Foreign key referencing time_slot_id in timeslots table
 	table_id INT NOT NULL, -- Foreign key referencing table_id in branch_tables table
 	preferred_name VARCHAR(255) NOT NULL, -- Preferred name for reservation
 	amount INT DEFAULT 1, -- Amount of reservation
 	search_id INT NOT NULL, -- Foreign key referencing search_id in search_records table
-	PRIMARY KEY (time_slot_id, table_id), -- Primary key constraint
+	PRIMARY KEY (timeslot_id, table_id), -- Primary key constraint
 	FOREIGN KEY (user_id) REFERENCES users(user_id), -- Foreign key constraint
-	FOREIGN KEY (time_slot_id) REFERENCES timeslots(timeslot_id), -- Foreign key constraint
+	FOREIGN KEY (timeslot_id) REFERENCES timeslots(timeslot_id), -- Foreign key constraint
 	FOREIGN KEY (table_id) REFERENCES branch_tables(table_id), -- Foreign key constraint
 	FOREIGN KEY (search_id) REFERENCES search_records(search_id) -- Foreign key constraint
 );
@@ -162,9 +162,9 @@ CREATE TABLE reports(
 	user_id INT NOT NULL, -- Foreign key referencing user_id in users table
 	branch_id INT NOT NULL, -- Foreign key referencing restaurant_branch_id in reserves table
 	report_description VARCHAR(255) DEFAULT NULL, -- Description of the report
-	is_service_issue BOOL DEFAULT FALSE, -- Flag for service issue
-	is_hygiene_issue BOOL DEFAULT FALSE, -- Flag for hygiene issue
-	is_other_issue BOOL DEFAULT FALSE, -- Flag for other issue
+	is_service_issue BOOLEAN DEFAULT FALSE, -- Flag for service issue
+	is_hygiene_issue BOOLEAN DEFAULT FALSE, -- Flag for hygiene issue
+	is_other_issue BOOLEAN DEFAULT FALSE, -- Flag for other issue
 	PRIMARY KEY (report_id), -- Primary key constraint
 	FOREIGN KEY (user_id) REFERENCES users(user_id), -- Foreign key constraint
 	FOREIGN KEY (branch_id) REFERENCES branches(branch_id) -- Foreign key constraint
