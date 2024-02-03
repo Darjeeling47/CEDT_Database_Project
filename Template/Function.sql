@@ -3,7 +3,7 @@
 ----------------------------------------------------------------------------------
 
 CREATE OR REPLACE FUNCTION name(parameter_1 DATA_TYPE, ...)
-  RETURN DATA_TYPE
+  RETURNS DATA_TYPE
   LANGUAGE plpgsql
   AS 
 $$
@@ -14,7 +14,7 @@ BEGIN
   SELECT * FROM table_name
   WHERE condition;
 
-  return data_name;
+  RETURN data_name;
 
 END
 $$
@@ -24,7 +24,7 @@ $$
 ----------------------------------------------------------------------------------
 
 CREATE OR REPLACE FUNCTION name(parameter_1 DATA_TYPE, ...)
-  RETURN TABLE(
+  RETURNS TABLE(
     column_1 DATA_TYPE,
     column_2 DATA_TYPE
   )
@@ -32,10 +32,9 @@ CREATE OR REPLACE FUNCTION name(parameter_1 DATA_TYPE, ...)
   AS 
 $$
 BEGIN
+  RETURN QUERY 
   SELECT * FROM table_name
   WHERE condition;
-
-  RETURN qurey;
 
 END
 $$
