@@ -35,7 +35,7 @@ BEGIN
   SELECT * FROM table_name
   WHERE condition;
 
-  RETURN qurey;
+  RETURN query;
 
 END
 $$
