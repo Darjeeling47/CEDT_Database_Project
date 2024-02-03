@@ -17,7 +17,7 @@ SELECT * FROM branch_locations;
 SELECT * FROM branch_tables;
 
 -- Food Limitation Table
-SELECT * FROM food_limitation;
+SELECT * FROM food_limitations;
 
 -- Menus Table
 SELECT * FROM menus;

@@ -96,7 +96,7 @@ CREATE TABLE menus(
 	food_limitation_id INT NOT NULL, -- Foreign key referencing food_limitation_id in foodlimitation table
 	PRIMARY KEY(menu_id), -- Primary key constraint
 	FOREIGN KEY(branch_id) REFERENCES branches(branch_id), -- Foreign key constraint
-	FOREIGN KEY(food_limitation_id) REFERENCES food_limitation(food_limitation_id) -- Foreign key constraint
+	FOREIGN KEY(food_limitation_id) REFERENCES food_limitations(food_limitation_id) -- Foreign key constraint
 );
 
 -- Timeslots Table
@@ -121,7 +121,7 @@ CREATE TABLE search_records(
 	amount INT DEFAULT 0, -- Amount of search
 	PRIMARY KEY (search_id), -- Primary key constraint
 	FOREIGN KEY (user_id) REFERENCES users(user_id), -- Foreign key constraint
-	FOREIGN KEY (food_limitation_id) REFERENCES food_limitation(food_limitation_id) -- Foreign key constraint
+	FOREIGN KEY (food_limitation_id) REFERENCES food_limitations(food_limitation_id) -- Foreign key constraint
 );
 
 -- Reserves Table
