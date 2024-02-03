@@ -103,8 +103,8 @@ CREATE TABLE menus(
 CREATE TABLE timeslots(
 	timeslot_id SERIAL, -- Unique identifier for the timeslot
 	timeslot_date DATE NOT NULL, -- Date of the timeslot
-	start_time TIMESTAMPTZ NOT NULL, -- Start time of the timeslot
-	end_time TIMESTAMPTZ NOT NULL, -- End time of the timeslot
+	start_time TIME NOT NULL, -- Start time of the timeslot
+	end_time TIME NOT NULL, -- End time of the timeslot
 	PRIMARY KEY (timeslot_id) -- Primary key constraint
 );
 
@@ -116,8 +116,8 @@ CREATE TABLE search_records(
 	location_link TEXT DEFAULT NULL, -- Link to location
 	food_type VARCHAR(255) DEFAULT NULL, -- Type of food
 	food_limitation_id INT DEFAULT NULL, -- Food limitations in Food Limitaion Id
-	expected_minprice INT DEFAULT NULL, -- Expected minimum price
-	expected_maxprice INT DEFAULT NULL, -- Expected maximum price
+	expected_min_price INT DEFAULT NULL, -- Expected minimum price
+	expected_max_price INT DEFAULT NULL, -- Expected maximum price
 	amount INT DEFAULT 0, -- Amount of search
 	PRIMARY KEY (search_id), -- Primary key constraint
 	FOREIGN KEY (user_id) REFERENCES users(user_id), -- Foreign key constraint
