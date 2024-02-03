@@ -132,7 +132,7 @@ CREATE TABLE reserves(
 	preferred_name VARCHAR(255) NOT NULL, -- Preferred name for reservation
 	amount INT DEFAULT 1, -- Amount of reservation
 	search_id INT NOT NULL, -- Foreign key referencing search_id in search_records table
-	PRIMARY KEY (user_id, time_slot_id, table_id), -- Primary key constraint
+	PRIMARY KEY (time_slot_id, table_id), -- Primary key constraint
 	FOREIGN KEY (user_id) REFERENCES users(user_id), -- Foreign key constraint
 	FOREIGN KEY (time_slot_id) REFERENCES timeslots(timeslot_id), -- Foreign key constraint
 	FOREIGN KEY (table_id) REFERENCES branch_tables(table_id), -- Foreign key constraint
