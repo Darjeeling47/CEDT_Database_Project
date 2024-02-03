@@ -10,7 +10,7 @@ branch_locations(branch_id, house_number, lane, road, sub_district, district, po
 
 branch_tables(table_id, table_number, max_capacity, branch_id)
 
-food_limitation(food_limitation_id, have_cow_milk, have_egg, have_tree_nut, have_peanut, have_shellfish, have_fish, have_soy, have_wheat, have_sesame, is_halal, is_kosher, is_vegetarian, is_zhai)
+food_limitation(food_limitation_id, have_cow_milk, have_egg, have_tree_nut, have_peanut, have_shellfish, have_fish, have_soy, have_wheat, have_sesame, is_halal, is_kosher, is_vegeterian, is_zhai)
 
 menus(menu_id, branch_id, menu_name, price, menu_type, picture, food_limitation_id)
 

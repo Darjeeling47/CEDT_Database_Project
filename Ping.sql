@@ -10,7 +10,8 @@ FROM branches
 WHERE restaurant_id = 1;
 
 -- 21.add_food_limitation : เพิ่ม food limitation ตามข้อมูลที่ใส่มา
-INSERT INTO 
+INSERT INTO food_limitations(have_cow_milk, have_egg, have_tree_nut, have_peanut, have_shellfish, have_fish, have_soy, have_wheat, have_sesame, is_halal, is_kosher, is_vegeterian, is_zhai)
+VALUES (true, true, true, true, true, true, true, true, true, true, true, true, true);
 
 -- 35.view_branches : ดูข้อมูล branch ทั้งหมดที่มี พร้อม branch location ตาม เงื่อนไขที่มี (null คือไม่มีเงื่อนไข) 
 SELECT * FROM restaurants R
