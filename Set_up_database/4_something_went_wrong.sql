@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS timeslots;
 DROP TABLE IF EXISTS branch_tables;
 DROP TABLE IF EXISTS branch_locations;
 DROP TABLE IF EXISTS menus;
-DROP TABLE IF EXISTS food_limitation;
+DROP TABLE IF EXISTS food_limitations;
 DROP TABLE IF EXISTS reports;
 DROP TABLE IF EXISTS branches;
 DROP TABLE IF EXISTS restaurant_managers;

@@ -9,6 +9,9 @@ SELECT branch_id, province_id, branch_type, open_time, close_time, telephone_num
 FROM branches
 WHERE restaurant_id = 1;
 
+-- 21.add_food_limitation : เพิ่ม food limitation ตามข้อมูลที่ใส่มา
+INSERT INTO 
+
 -- 35.view_branches : ดูข้อมูล branch ทั้งหมดที่มี พร้อม branch location ตาม เงื่อนไขที่มี (null คือไม่มีเงื่อนไข) 
 SELECT * FROM restaurants R
 INNER JOIN branches B ON B.restaurant_id = R.restaurant_id
@@ -18,10 +21,11 @@ ORDER BY R.restaurant_name ASC;
 
 -- 62.view_reserve_statistics : Restaurant manager ดูสถิติการจองที่ผ่านมาของ branch 
 -- group by user_id
-SELECT R.user_id, COUNT(*) AS number_of_reservation FROM reserves R
+SELECT R.user_id, U.user_name, COUNT(*) AS number_of_reservation FROM reserves R
 INNER JOIN branch_tables BT ON BT.table_id = R.table_id
+INNER JOIN users U ON U.user_id = R.user_id
 WHERE BT.branch_id = 1
-GROUP BY R.user_id
+GROUP BY R.user_id, U.user_name
 ORDER BY number_of_reservation DESC;
 
 -- group by amount

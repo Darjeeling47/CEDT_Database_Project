@@ -67,7 +67,7 @@ CREATE TABLE branch_tables(
 );
 
 -- Food Limitation Table
-CREATE TABLE food_limitation(
+CREATE TABLE food_limitations(
 	food_limitation_id SERIAL, -- Unique identifier for the food limitation
 	have_cow_milk BOOLEAN DEFAULT FALSE, -- Flag for cow milk restriction
 	have_egg BOOLEAN DEFAULT FALSE, -- Flag for egg restriction
