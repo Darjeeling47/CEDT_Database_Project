@@ -103,8 +103,8 @@ CREATE TABLE menus(
 CREATE TABLE timeslots(
 	timeslot_id SERIAL, -- Unique identifier for the timeslot
 	timeslot_date DATE NOT NULL, -- Date of the timeslot
-	start_time TIMESTAMPTZ NOT NULL, -- Start time of the timeslot
-	end_time TIMESTAMPTZ NOT NULL, -- End time of the timeslot
+	start_time TIME NOT NULL, -- Start time of the timeslot
+	end_time TIME NOT NULL, -- End time of the timeslot
 	PRIMARY KEY (timeslot_id) -- Primary key constraint
 );
 
