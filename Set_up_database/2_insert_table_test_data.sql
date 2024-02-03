@@ -144,7 +144,7 @@ INSERT INTO timeslots (timeslot_date, start_time, end_time) VALUES
 ('2024-02-03', '23:30:00', '00:00:00');
 
 -- Search Records Table
-INSERT INTO search_records (user_id, search_records_timestamp, location_link, food_type, food_limitation_id, expected_minprice, expected_maxprice, amount) VALUES
+INSERT INTO search_records (user_id, search_records_timestamp, location_link, food_type, food_limitation_id, expected_min_price, expected_max_price, amount) VALUES
 (3, '2024-02-03 11:00:00', 'http://maps.google.com/...', 'French', 1, 15, 25, 1),
 (4, '2024-02-03 18:00:00', 'http://maps.google.com/...', 'Indian', 1, 12, 18, 2),
 (5, '2024-02-03 19:00:00', 'http://maps.google.com/...', 'Thailand', 2, 12, 18, 2),
