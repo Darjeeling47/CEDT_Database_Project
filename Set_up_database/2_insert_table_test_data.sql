@@ -13,16 +13,16 @@ INSERT INTO provinces (country, province_name) VALUES
 
 -- Users Table
 INSERT INTO users (user_name, user_password, email, telephone_number) VALUES
-('mike_wilson', 'mikemike', 'mike@example.com', '1234567890'),
-('sara_carter', 'sarasara', 'sara@example.com', '0987654321'),
+('mike_wilson', 'mikemike', 'mike@example.com', '12345678'),
+('sara_carter', 'sarasara', 'sara@example.com', '09876543'),
 ('david_green', 'davidpass', 'david@example.com', NULL),
-('emily_white', 'emilypass', 'emily@example.com', '5555555555'),
-('james_brown', 'jamespass', 'james@example.com', '1111111111'),
-('linda_davis', 'lindapass', 'linda@example.com', '2222222222'),
-('chris_miller', 'chrispass', 'chris@example.com', '3333333333'),
-('amy_jackson', 'amypass', 'amy@example.com', '4444444444'),
-('steven_thomas', 'stevenpass', 'steven@example.com', '6666666666'),
-('jennifer_harris', 'jenniferpass', 'jennifer@example.com', '7777777777');
+('emily_white', 'emilypass', 'emily@example.com', '55555555'),
+('james_brown', 'jamespass', 'james@example.com', '11111111'),
+('linda_davis', 'lindapass', 'linda@example.com', '22222222'),
+('chris_miller', 'chrispass', 'chris@example.com', '33333333'),
+('amy_jackson', 'amypass', 'amy@example.com', '44444444'),
+('steven_thomas', 'stevenpass', 'steven@example.com', '66666666'),
+('jennifer_harris', 'jenniferpass', 'jennifer@example.com', '77777777');
 
 -- Restaurants Table
 INSERT INTO restaurants (detail, restaurant_owner, restaurant_name, website) VALUES
@@ -107,9 +107,42 @@ INSERT INTO menus (branch_id, menu_name, price, menu_type, picture, food_limitat
 
 -- Timeslots Table
 INSERT INTO timeslots (timeslot_date, start_time, end_time) VALUES
-('2024-02-03', '11:30', '12:30'),
-('2024-02-03', '17:00', '18:00'),
-('2024-02-03', '19:30', '20:30');
+('2024-02-03', '2024-02-03 06:00:00', '2024-02-03 06:30:00'),
+('2024-02-03', '2024-02-03 06:30:00', '2024-02-03 07:00:00'),
+('2024-02-03', '2024-02-03 07:00:00', '2024-02-03 07:30:00'),
+('2024-02-03', '2024-02-03 07:30:00', '2024-02-03 08:00:00'),
+('2024-02-03', '2024-02-03 08:00:00', '2024-02-03 08:30:00'),
+('2024-02-03', '2024-02-03 08:30:00', '2024-02-03 09:00:00'),
+('2024-02-03', '2024-02-03 09:00:00', '2024-02-03 09:30:00'),
+('2024-02-03', '2024-02-03 09:30:00', '2024-02-03 10:00:00'),
+('2024-02-03', '2024-02-03 10:00:00', '2024-02-03 10:30:00'),
+('2024-02-03', '2024-02-03 10:30:00', '2024-02-03 11:00:00'),
+('2024-02-03', '2024-02-03 11:00:00', '2024-02-03 11:30:00'),
+('2024-02-03', '2024-02-03 11:30:00', '2024-02-03 12:00:00'),
+('2024-02-03', '2024-02-03 12:00:00', '2024-02-03 12:30:00'),
+('2024-02-03', '2024-02-03 12:30:00', '2024-02-03 13:00:00'),
+('2024-02-03', '2024-02-03 13:00:00', '2024-02-03 13:30:00'),
+('2024-02-03', '2024-02-03 13:30:00', '2024-02-03 14:00:00'),
+('2024-02-03', '2024-02-03 14:00:00', '2024-02-03 14:30:00'),
+('2024-02-03', '2024-02-03 14:30:00', '2024-02-03 15:00:00'),
+('2024-02-03', '2024-02-03 15:00:00', '2024-02-03 15:30:00'),
+('2024-02-03', '2024-02-03 15:30:00', '2024-02-03 16:00:00'),
+('2024-02-03', '2024-02-03 16:00:00', '2024-02-03 16:30:00'),
+('2024-02-03', '2024-02-03 16:30:00', '2024-02-03 17:00:00'),
+('2024-02-03', '2024-02-03 17:00:00', '2024-02-03 17:30:00'),
+('2024-02-03', '2024-02-03 17:30:00', '2024-02-03 18:00:00'),
+('2024-02-03', '2024-02-03 18:00:00', '2024-02-03 18:30:00'),
+('2024-02-03', '2024-02-03 18:30:00', '2024-02-03 19:00:00'),
+('2024-02-03', '2024-02-03 19:00:00', '2024-02-03 19:30:00'),
+('2024-02-03', '2024-02-03 19:30:00', '2024-02-03 20:00:00'),
+('2024-02-03', '2024-02-03 20:00:00', '2024-02-03 20:30:00'),
+('2024-02-03', '2024-02-03 20:30:00', '2024-02-03 21:00:00'),
+('2024-02-03', '2024-02-03 21:00:00', '2024-02-03 21:30:00'),
+('2024-02-03', '2024-02-03 21:30:00', '2024-02-03 22:00:00'),
+('2024-02-03', '2024-02-03 22:00:00', '2024-02-03 22:30:00'),
+('2024-02-03', '2024-02-03 22:30:00', '2024-02-03 23:00:00'),
+('2024-02-03', '2024-02-03 23:00:00', '2024-02-03 23:30:00'),
+('2024-02-03', '2024-02-03 23:30:00', '2024-02-04 00:00:00');
 
 -- Search Records Table
 INSERT INTO search_records (user_id, search_records_timestamp, location_link, food_type, food_limitation, expected_minprice, expected_maxprice, amount) VALUES
@@ -117,28 +150,27 @@ INSERT INTO search_records (user_id, search_records_timestamp, location_link, fo
 (4, '2024-02-03 18:00:00', 'http://maps.google.com/...', 'Indian', 'Halal', 12, 18, 2);
 
 -- Reserves Table
--- Reserves Table
 INSERT INTO reserves (user_id, time_slot_id, table_id, preferred_name, amount, search_id) VALUES
-(1, 3, 12, 'John Doe', 1, 1),
-(2, 1, 14, 'Jane Smith', 2, 2),
-(3, 2, 16, 'Bob Jones', 1, 1),
-(4, 3, 18, 'Alice Wang', 1, 2),
-(5, 1, 20, 'Mike Wilson', 2, 1),
-(6, 2, 22, 'Sara Carter', 1, 1),
-(7, 3, 24, 'David Green', 1, 2),
-(8, 1, 26, 'Emily White', 2, 1),
-(9, 2, 28, 'James Brown', 1, 2),
-(10, 3, 30, 'Linda Davis', 1, 1),
-(1, 1, 32, 'Chris Miller', 2, 2),
-(2, 2, 34, 'Amy Jackson', 1, 1),
-(3, 3, 36, 'Steven Thomas', 1, 2),
-(4, 1, 38, 'Jennifer Harris', 2, 1),
-(5, 2, 40, 'Mike Wilson', 1, 1),
-(6, 3, 42, 'Sara Carter', 1, 2),
-(7, 1, 44, 'David Green', 2, 1),
-(8, 2, 46, 'Emily White', 1, 2),
-(9, 3, 48, 'James Brown', 1, 1),
-(10, 1, 50, 'Linda Davis', 2, 2);
+(1, 3, 7, 'John Doe', 1, 1),
+(2, 1, 7, 'Jane Smith', 2, 2),
+(3, 2, 7, 'Bob Jones', 1, 1),
+(4, 3, 9, 'Alice Wang', 1, 2),
+(5, 1, 9, 'Mike Wilson', 2, 1),
+(6, 2, 9, 'Sara Carter', 1, 1),
+(7, 3, 1, 'David Green', 1, 2),
+(8, 1, 5, 'Emily White', 2, 1),
+(9, 2, 6, 'James Brown', 1, 2),
+(10, 3, 20, 'Linda Davis', 1, 1),
+(1, 1, 20, 'Chris Miller', 2, 2),
+(2, 2, 10, 'Amy Jackson', 1, 1),
+(3, 3, 10, 'Steven Thomas', 1, 2),
+(4, 1, 10, 'Jennifer Harris', 2, 1),
+(5, 2, 15, 'Mike Wilson', 1, 1),
+(6, 3, 15, 'Sara Carter', 1, 2),
+(7, 1, 15, 'David Green', 2, 1),
+(8, 2, 20, 'Emily White', 1, 2),
+(9, 3, 20, 'James Brown', 1, 1),
+(10, 1, 20, 'Linda Davis', 2, 2);
 
 
 -- Restaurant Managers Table
@@ -169,9 +201,9 @@ INSERT INTO admins (user_id, province_id) VALUES
 
 -- Reports Table
 INSERT INTO reports (user_id, branch_id, report_description, is_service_issue, is_hygiene_issue, is_other_issue) VALUES
-(5, 11, 'Delayed service during rush hour.', TRUE, FALSE, FALSE),
-(6, 12, 'Unclean restrooms.', FALSE, TRUE, FALSE),
-(7, 13, 'Food not served as per order.', FALSE, FALSE, TRUE),
-(8, 14, 'Rude behavior from staff.', TRUE, FALSE, FALSE),
-(9, 15, 'Overcharged on the bill.', FALSE, FALSE, TRUE),
-(10, 16, 'Long waiting time for seating.', TRUE, FALSE, FALSE);
+(5, 1, 'Delayed service during rush hour.', TRUE, FALSE, FALSE),
+(6, 2, 'Unclean restrooms.', FALSE, TRUE, FALSE),
+(7, 3, 'Food not served as per order.', FALSE, FALSE, TRUE),
+(8, 4, 'Rude behavior from staff.', TRUE, FALSE, FALSE),
+(9, 5, 'Overcharged on the bill.', FALSE, FALSE, TRUE),
+(10, 6, 'Long waiting time for seating.', TRUE, FALSE, FALSE);

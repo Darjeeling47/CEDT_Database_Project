@@ -12,7 +12,7 @@ CREATE TABLE users(
 	user_name VARCHAR(255) NOT NULL, -- User's name
 	user_password VARCHAR(255) NOT NULL, -- User's password
 	email VARCHAR(255) DEFAULT NULL, -- User's email address
-	telephone_number VARCHAR(11) DEFAULT NULL, -- User's telephone number
+	telephone_number VARCHAR(40) DEFAULT NULL, -- User's telephone number
 	PRIMARY KEY (user_id) -- Primary key constraint
 );
 
@@ -33,7 +33,7 @@ CREATE TABLE branches(
 	branch_type VARCHAR(255) DEFAULT NULL, -- Type of branch
 	open_time TIMETZ NOT NULL, -- Opening time
 	close_time TIMETZ NOT NULL, -- Closing time
-	telephone_number VARCHAR(11) DEFAULT NULL, -- Branch telephone number
+	telephone_number VARCHAR(40) DEFAULT NULL, -- Branch telephone number
 	rating REAL DEFAULT 0, -- Rating of the branch
 	max_capacity INT DEFAULT 0, -- Maximum capacity of the branch
 	parking_amount INT DEFAULT 0, -- Amount of parking available
@@ -51,7 +51,7 @@ CREATE TABLE branch_locations(
 	road VARCHAR(255) NOT NULL, -- Road name
 	sub_district VARCHAR(255) NOT NULL, -- Sub-district
 	district VARCHAR(255) NOT NULL, -- District
-	postal_code VARCHAR(6) NOT NULL, -- Postal code
+	postal_code VARCHAR(10) NOT NULL, -- Postal code
 	PRIMARY KEY(branch_id), -- Primary key constraint
 	FOREIGN KEY(branch_id) REFERENCES branches(branch_id) -- Foreign key constraint
 );
@@ -102,7 +102,7 @@ CREATE TABLE menus(
 -- Timeslots Table
 CREATE TABLE timeslots(
 	timeslot_id SERIAL, -- Unique identifier for the timeslot
-	timeslot_date TIMESTAMPTZ NOT NULL, -- Date of the timeslot
+	timeslot_date DATE NOT NULL, -- Date of the timeslot
 	start_time TIMESTAMPTZ NOT NULL, -- Start time of the timeslot
 	end_time TIMESTAMPTZ NOT NULL, -- End time of the timeslot
 	PRIMARY KEY (timeslot_id) -- Primary key constraint
