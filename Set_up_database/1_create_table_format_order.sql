@@ -67,7 +67,7 @@ CREATE TABLE branch_tables(
 );
 
 -- Food Limitation Table
-CREATE TABLE foodlimitation(
+CREATE TABLE food_limitation(
 	food_limitation_id SERIAL, -- Unique identifier for the food limitation
 	have_cow_milk BOOL DEFAULT FALSE, -- Flag for cow milk restriction
 	have_egg BOOL DEFAULT FALSE, -- Flag for egg restriction
@@ -96,7 +96,7 @@ CREATE TABLE menus(
 	food_limitation_id INT NOT NULL, -- Foreign key referencing food_limitation_id in foodlimitation table
 	PRIMARY KEY(menu_id), -- Primary key constraint
 	FOREIGN KEY(branch_id) REFERENCES branches(branch_id), -- Foreign key constraint
-	FOREIGN KEY(food_limitation_id) REFERENCES foodlimitation(food_limitation_id) -- Foreign key constraint
+	FOREIGN KEY(food_limitation_id) REFERENCES food_limitation(food_limitation_id) -- Foreign key constraint
 );
 
 -- Timeslots Table
@@ -115,12 +115,13 @@ CREATE TABLE search_records(
 	search_records_timestamp VARCHAR NOT NULL, -- Timestamp of the search record
 	location_link TEXT DEFAULT NULL, -- Link to location
 	food_type VARCHAR DEFAULT NULL, -- Type of food
-	food_limitation VARCHAR DEFAULT NULL, -- Food limitations
+	food_limitation_id INT DEFAULT NULL, -- Food limitations in Food Limitaion Id
 	expected_minprice INT DEFAULT NULL, -- Expected minimum price
 	expected_maxprice INT DEFAULT NULL, -- Expected maximum price
 	amount INT DEFAULT 0, -- Amount of search
 	PRIMARY KEY (search_id), -- Primary key constraint
-	FOREIGN KEY (user_id) REFERENCES users(user_id) -- Foreign key constraint
+	FOREIGN KEY (user_id) REFERENCES users(user_id), -- Foreign key constraint
+	FOREIGN KEY (food_limitation_id) REFERENCES food_limitation(food_limitation_id) -- Foreign key constraint
 );
 
 -- Reserves Table

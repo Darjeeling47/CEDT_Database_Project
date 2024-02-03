@@ -87,7 +87,7 @@ INSERT INTO branch_tables (table_number, max_capacity, branch_id) VALUES
 (2, 6, 10);
 
 -- Food Limitation Table
-INSERT INTO foodlimitation (have_cow_milk, have_egg, have_tree_nut, have_peanut, have_shellfish, have_fish, have_soy, have_wheat, have_sesame, is_halal, is_kosher, is_vegeterian, is_zhai) VALUES
+INSERT INTO food_limitation (have_cow_milk, have_egg, have_tree_nut, have_peanut, have_shellfish, have_fish, have_soy, have_wheat, have_sesame, is_halal, is_kosher, is_vegeterian, is_zhai) VALUES
 (TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE),
 (FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
 (TRUE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE);
@@ -145,9 +145,11 @@ INSERT INTO timeslots (timeslot_date, start_time, end_time) VALUES
 ('2024-02-03', '2024-02-03 23:30:00', '2024-02-04 00:00:00');
 
 -- Search Records Table
-INSERT INTO search_records (user_id, search_records_timestamp, location_link, food_type, food_limitation, expected_minprice, expected_maxprice, amount) VALUES
-(3, '2024-02-03 11:00:00', 'http://maps.google.com/...', 'French', 'Vegetarian, Halal', 15, 25, 1),
-(4, '2024-02-03 18:00:00', 'http://maps.google.com/...', 'Indian', 'Halal', 12, 18, 2);
+INSERT INTO search_records (user_id, search_records_timestamp, location_link, food_type, food_limitation_id, expected_minprice, expected_maxprice, amount) VALUES
+(3, '2024-02-03 11:00:00', 'http://maps.google.com/...', 'French', 1, 15, 25, 1),
+(4, '2024-02-03 18:00:00', 'http://maps.google.com/...', 'Indian', 1, 12, 18, 2),
+(5, '2024-02-03 19:00:00', 'http://maps.google.com/...', 'Thailand', 2, 12, 18, 2),
+(6, '2024-02-03 20:00:00', 'http://maps.google.com/...', 'Japan', 3, 12, 18, 2);;
 
 -- Reserves Table
 INSERT INTO reserves (user_id, time_slot_id, table_id, preferred_name, amount, search_id) VALUES
