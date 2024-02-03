@@ -39,3 +39,6 @@ SELECT * FROM admins;
 
 -- Reports Table
 SELECT * FROM reports;
+
+-- Logs Table
+SELECT * FROM logs;

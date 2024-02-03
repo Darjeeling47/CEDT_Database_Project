@@ -5,6 +5,7 @@
 DROP TABLE IF EXISTS reserves;
 
 -- Drop other tables similarly, following the same pattern
+DROP TABLE IF EXISTS logs;
 DROP TABLE IF EXISTS search_records;
 DROP TABLE IF EXISTS timeslots;
 DROP TABLE IF EXISTS branch_tables;

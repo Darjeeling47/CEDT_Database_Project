@@ -209,3 +209,7 @@ INSERT INTO reports (user_id, branch_id, report_description, is_service_issue, i
 (8, 4, 'Rude behavior from staff.', TRUE, FALSE, FALSE),
 (9, 5, 'Overcharged on the bill.', FALSE, FALSE, TRUE),
 (10, 6, 'Long waiting time for seating.', TRUE, FALSE, FALSE);
+
+INSERT INTO logs (user_id, log_time, is_login, is_logout) VALUES
+(1, '2024-02-03 11:00:00', TRUE, FALSE),
+(1, '2024-02-03 15:00:00', FALSE, TRUE);

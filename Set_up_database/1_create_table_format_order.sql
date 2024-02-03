@@ -169,3 +169,14 @@ CREATE TABLE reports(
 	FOREIGN KEY (user_id) REFERENCES users(user_id), -- Foreign key constraint
 	FOREIGN KEY (branch_id) REFERENCES branches(branch_id) -- Foreign key constraint
 );
+
+-- Logs Table
+CREATE TABLE logs(
+	log_id SERIAL NOT NULL, -- Unique identifier for the logs
+	user_id INT NOT NULL, -- Foreign key referencing user_id in users table
+	log_time TIMESTAMPTZ NOT NULL, -- Date/time of the log
+	is_login BOOLEAN DEFAULT FALSE, -- Flag for login
+	is_logout BOOLEAN DEFAULT FALSE, -- Flag for logout
+	PRIMARY KEY (log_id), -- Primary key constraint
+	FOREIGN KEY (user_id) REFERENCES users(user_id) -- Foreign key constraint
+);

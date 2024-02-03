@@ -1,0 +1,27 @@
+provinces(province_id, country, province_name)
+
+users(user_id, user_name, user_password, email, telephone_number)
+
+restaurants(restaurant_id, detail, restaurant_owner, restaurant_name, website)
+
+branches(branch_id, province_id, branch_type, open_time, close_time, telephone_number, rating, max_capacity, parking_amount, restaurant_id)
+
+branch_locations(branch_id, house_number, lane, road, sub_district, district, postal_code)
+
+branch_tables(table_id, table_number, max_capacity, branch_id)
+
+food_limitation(food_limitation_id, have_cow_milk, have_egg, have_tree_nut, have_peanut, have_shellfish, have_fish, have_soy, have_wheat, have_sesame, is_halal, is_kosher, is_vegetarian, is_zhai)
+
+menus(menu_id, branch_id, menu_name, price, menu_type, picture, food_limitation_id)
+
+timeslots(timeslot_id, timeslot_date, start_time, end_time)
+
+search_records(search_id, user_id, search_records_timestamp, location_link, food_type, food_limitation_id, expected_minprice, expected_maxprice, amount)
+
+reserves(user_id, timeslot_id, table_id, preferred_name, amount, search_id)
+
+restaurant_managers(user_id, restaurant_id)
+
+admins(user_id, province_id)
+
+reports(report_id, user_id, branch_id, report_description, is_service_issue, is_hygiene_issue, is_other_issue)
