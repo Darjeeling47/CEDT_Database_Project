@@ -20,41 +20,53 @@ ORDER BY R.restaurant_name ASC;
 -- group by user_id
 SELECT R.user_id, COUNT(*) AS number_of_reservation FROM reserves R
 INNER JOIN branch_tables BT ON BT.table_id = R.table_id
-WHERE BT.branch_id = '1'
+WHERE BT.branch_id = 1
 GROUP BY R.user_id
-ORDER BY COUNT(*) DESC;
+ORDER BY number_of_reservation DESC;
 
 -- group by amount
 SELECT R.amount, COUNT(*) AS number_of_reservation FROM reserves R
 INNER JOIN branch_tables BT ON BT.table_id = R.table_id
-WHERE BT.branch_id = '1'
+WHERE BT.branch_id = 1
 GROUP BY R.amount
-ORDER BY COUNT(*) DESC;
+ORDER BY number_of_reservation DESC;
 
 -- group by date
 SELECT T.timeslot_date, COUNT(*) AS number_of_reservation FROM reserves R
 INNER JOIN branch_tables BT ON BT.table_id = R.table_id
 INNER JOIN timeslots T ON T.timeslot_id = R.timeslot_id
-WHERE BT.branch_id = '1'
+WHERE BT.branch_id = 1
 GROUP BY T.timeslot_date
-ORDER BY COUNT(*) DESC;
+ORDER BY number_of_reservation DESC;
 
 -- group by time
 SELECT T.start_time, T.end_time, COUNT(*) AS number_of_reservation FROM reserves R
 INNER JOIN branch_tables BT ON BT.table_id = R.table_id
 INNER JOIN timeslots T ON T.timeslot_id = R.timeslot_id
-WHERE BT.branch_id = '4'
+WHERE BT.branch_id = 1
 GROUP BY T.start_time, T.end_time
-ORDER BY COUNT(*) DESC;
+ORDER BY number_of_reservation DESC;
 
 -- group by search - expected price
 SELECT SR.expected_min_price, SR.expected_max_price, COUNT(*) AS number_of_reservation FROM reserves R
 INNER JOIN branch_tables BT ON BT.table_id = R.table_id
 INNER JOIN search_records SR ON SR.search_id = R.search_id
-WHERE BT.branch_id = '4'
+WHERE BT.branch_id = 1
 GROUP BY SR.expected_min_price, SR.expected_max_price
 ORDER BY SR.expected_min_price ASC, SR.expected_max_price ASC;
 
 -- group by search - food type
+SELECT SR.food_type, COUNT(*) AS number_of_reservation FROM reserves R
+INNER JOIN branch_tables BT ON BT.table_id = R.table_id
+INNER JOIN search_records SR ON SR.search_id = R.search_id
+WHERE BT.branch_id = 1
+GROUP BY SR.food_type
+ORDER BY number_of_reservation DESC;
 
 -- group by search - food limitation id
+SELECT SR.food_limitation_id, COUNT(*) AS number_of_reservation FROM reserves R
+INNER JOIN branch_tables BT ON BT.table_id = R.table_id
+INNER JOIN search_records SR ON SR.search_id = R.search_id
+WHERE BT.branch_id = 1
+GROUP BY SR.food_limitation_id
+ORDER BY number_of_reservation DESC;
