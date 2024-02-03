@@ -112,9 +112,9 @@ CREATE TABLE timeslots(
 CREATE TABLE search_records(
 	search_id SERIAL NOT NULL, -- Unique identifier for the search record
 	user_id INT NOT NULL, -- Foreign key referencing user_id in reserves table
-	search_records_timestamp VARCHAR NOT NULL, -- Timestamp of the search record
+	search_records_timestamp TIMESTAMPTZ NOT NULL, -- Timestamp of the search record
 	location_link TEXT DEFAULT NULL, -- Link to location
-	food_type VARCHAR DEFAULT NULL, -- Type of food
+	food_type VARCHAR(255) DEFAULT NULL, -- Type of food
 	food_limitation_id INT DEFAULT NULL, -- Food limitations in Food Limitaion Id
 	expected_minprice INT DEFAULT NULL, -- Expected minimum price
 	expected_maxprice INT DEFAULT NULL, -- Expected maximum price
