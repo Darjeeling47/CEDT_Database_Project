@@ -13,6 +13,22 @@ WHERE restaurant_id = 1;
 INSERT INTO food_limitations(have_cow_milk, have_egg, have_tree_nut, have_peanut, have_shellfish, have_fish, have_soy, have_wheat, have_sesame, is_halal, is_kosher, is_vegeterian, is_zhai)
 VALUES (true, true, true, true, true, true, true, true, true, true, true, true, true);
 
+-- 22.view_food_limitations : ดู food limitation ทั้งหมด (แสดงออกมาทั้งหมด)
+SELECT * FROM food_limitations;
+
+-- 23.edit_food_limitation : แก้ไขข้อมูล food limitation ที่ต้องการ
+UPDATE food_limitations
+SET have_cow_milk = false, is_halal = false
+WHERE food_limitation_id = 4;
+
+-- 24.delete_food_limiation : ลบ food limitation ที่ต้องการ
+DELETE FROM food_limitations WHERE food_limitation_id = 4;
+
+-- 25.search_food_limitation_id : รับข้อมูลเข้าไปว่าอันไหนจริงบ้าง แล้ว return food_limitation_id ที่มีข้อมูลตรงตามนั้นออกมา
+SELECT food_limitation_id FROM food_limitations
+WHERE have_cow_milk = false AND have_egg = false AND have_tree_nut = false AND have_peanut = false AND have_shellfish = false AND have_fish = false AND have_soy = false
+AND have_wheat = false AND have_sesame = false AND is_halal = false AND is_kosher = false AND is_vegeterian = false AND is_zhai = false;
+
 -- 35.view_branches : ดูข้อมูล branch ทั้งหมดที่มี พร้อม branch location ตาม เงื่อนไขที่มี (null คือไม่มีเงื่อนไข) 
 SELECT * FROM restaurants R
 INNER JOIN branches B ON B.restaurant_id = R.restaurant_id
