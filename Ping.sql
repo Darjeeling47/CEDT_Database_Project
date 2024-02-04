@@ -9,6 +9,47 @@ SELECT branch_id, province_id, branch_type, open_time, close_time, telephone_num
 FROM branches
 WHERE restaurant_id = 1;
 
+-- 12.calculate_max_capacity : function สำหรับ trigger หลัง insert + update + delete โต๊ะใน branch -> ทำการคำนวณจำนวนโต๊ะทั้งหมดที่ branch นั้นๆ มี แล้วเก็บใน attribute ใน table ของ branch นั้น
+CREATE OR REPLACE FUNCTION calculate_branch_max_capacity_for_insert_update()
+  RETURNS TRIGGER
+  LANGUAGE plpgsql
+  AS 
+$$
+BEGIN
+  UPDATE branches
+  SET max_capacity = (SELECT SUM(max_capacity) FROM branch_tables
+    WHERE branch_id = NEW.branch_id)
+  WHERE branch_id = NEW.branch_id;
+  RETURN NEW;
+END;
+$$
+
+CREATE OR REPLACE TRIGGER inserting_and_updating_branch_tables
+  AFTER INSERT OR UPDATE OF max_capacity
+  ON branch_tables
+  FOR EACH ROW
+  EXECUTE PROCEDURE calculate_branch_max_capacity_for_insert_update()
+
+CREATE OR REPLACE FUNCTION calculate_branch_max_capacity_for_delete()
+  RETURNS TRIGGER
+  LANGUAGE plpgsql
+  AS 
+$$
+BEGIN
+  UPDATE branches
+  SET max_capacity = (SELECT SUM(max_capacity) FROM branch_tables
+    WHERE branch_id = OLD.branch_id)
+  WHERE branch_id = OLD.branch_id;
+  RETURN OLD;
+END;
+$$
+  
+CREATE OR REPLACE TRIGGER deleting_branch_tables
+  AFTER DELETE
+  ON branch_tables
+  FOR EACH ROW
+  EXECUTE PROCEDURE calculate_branch_max_capacity_for_delete()
+
 -- 21.add_food_limitation : เพิ่ม food limitation ตามข้อมูลที่ใส่มา
 INSERT INTO food_limitations(have_cow_milk, have_egg, have_tree_nut, have_peanut, have_shellfish, have_fish, have_soy, have_wheat, have_sesame, is_halal, is_kosher, is_vegeterian, is_zhai)
 VALUES (true, true, true, true, true, true, true, true, true, true, true, true, true);
