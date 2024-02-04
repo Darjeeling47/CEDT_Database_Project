@@ -96,7 +96,7 @@ CREATE TABLE menus(
 	menu_name VARCHAR(255) NOT NULL, -- Name of the menu
 	price INT DEFAULT 0, -- Price of the menu
 	menu_type VARCHAR(255) NOT NULL, -- Type of the menu
-	picture TEXT NULL, -- Picture of the menu
+	picture TEXT DEFAULT NULL, -- Picture of the menu
 	food_limitation_id INT NOT NULL, -- Foreign key referencing food_limitation_id in foodlimitation table
 	PRIMARY KEY(menu_id), -- Primary key constraint
 	FOREIGN KEY(branch_id) REFERENCES branches(branch_id), -- Foreign key constraint
