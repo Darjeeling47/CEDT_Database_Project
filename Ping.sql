@@ -1,3 +1,8 @@
+-- 6.delete_user : ลบข้อมูล user ที่ต้องการ
+DELETE FROM admins WHERE user_id = 1;
+DELETE FROM restaurant_managers WHERE user_id = 1;
+DELETE FROM users WHERE user_id = 1;
+
 -- 10.view_restaurants : ดูข้อมูลร้านอาหารทั้งหมดที่มี
 SELECT * FROM restaurants;
 
@@ -127,6 +132,17 @@ INNER JOIN branches B ON B.restaurant_id = R.restaurant_id
 INNER JOIN branch_locations BL ON BL.branch_id = B.branch_id
 WHERE BL.district = 'Houston'
 ORDER BY R.restaurant_name ASC;
+
+-- 41.delete_branch : ลบ branch นั้น พร้อม branch location
+DELETE FROM branch_locations WHERE branch_id = 1;
+DELETE FROM reports WHERE branch_id = 1;
+DELETE FROM menus WHERE branch_id = 1;
+DELETE FROM reserves WHERE table_id IN (
+  SELECT table_id FROM branch_tables
+  WHERE branch_id = 1
+);
+DELETE FROM branch_tables WHERE branch_id = 1;
+DELETE FROM branches WHERE branch_id = 1;
 
 -- 62.view_reserve_statistics : Restaurant manager ดูสถิติการจองที่ผ่านมาของ branch 
 -- group by user_id
