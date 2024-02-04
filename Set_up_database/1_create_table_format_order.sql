@@ -82,7 +82,7 @@ CREATE TABLE food_limitations(
 	is_kosher BOOLEAN DEFAULT FALSE, -- Flag for kosher food
 	is_vegeterian BOOLEAN DEFAULT FALSE, -- Flag for vegetarian food
 	is_zhai BOOLEAN DEFAULT FALSE, -- Flag for zhai food
-	PRIMARY KEY(food_limitation_id) -- Primary key constraint
+	PRIMARY KEY(food_limitation_id), -- Primary key constraint
 	UNIQUE(have_cow_milk, have_egg, have_tree_nut, have_peanut, have_shellfish, have_fish, have_soy, have_wheat, have_sesame, is_halal, is_kosher, is_vegeterian, is_zhai)
 );
 
