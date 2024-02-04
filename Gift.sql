@@ -35,3 +35,20 @@ SELECT RM.user_id AS restaurant_manager_id, RS.restaurant_name, B.branch_id, BT.
 FROM restaurant_managers RM, restaurants RS, branches B, branch_tables BT, reserves R
 WHERE RM.user_id = 1 AND (RM.restaurant_id = RS.restaurant_id) AND (RS.restaurant_id = B.restaurant_id) AND (B.branch_id = BT.branch_id) AND (BT.table_id = R.table_id);
 
+-- 32. edit_reserve : แก้ไขการจองของตัวเอง 
+UPDATE reserves
+SET preferred_name = 'Christian Black'
+WHERE user_id = 1 AND timeslot_id = 1 AND table_id = 12;
+
+-- 33. delete_reserve : User ลบการจองของตัวเอง
+DELETE FROM reserves WHERE user_id = 1 AND timeslot_id = 1;
+
+-- 34. add_branch : เพิ่ม branch ใหม่ พร้อม branch location
+INSERT INTO branches (branch_id, province_id, branch_type, open_time, close_time, telephone_number, rating, max_capacity, parking_amount, restaurant_id)
+VALUES (11, 1, 'Subbranch', '10:00', '22:00', '089-123-4567', 4.0, 80, 30, 1);
+
+INSERT INTO branch_locations (branch_id, house_number, lane, road, sub_district, district, postal_code) 
+VALUES (11, '101', NULL, 'Sky Avenue', 'Seaside', 'Austin', '50123');
+
+INSERT INTO branch_tables (table_number, max_capacity, branch_id) 
+VALUES (1, 5, 11), (2, 8, 11);
