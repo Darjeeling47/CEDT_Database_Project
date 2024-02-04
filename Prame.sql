@@ -27,16 +27,19 @@ SELECT RS.restaurant_name, B.*, BL.* FROM restaurants RS, branches B, branch_loc
 WHERE (RM.user_id = a) AND (RM.restaurant_id = RS.restaurant_id) AND (B.restaurant_id = RS.restaurant_id) AND (BL.branch_id = B.branch_id);
 
 -- 43.Query - view_menus(branch_id, เงื่อนไข filter) : ดูเมนูอาหารของ branch ตามเงื่อนไขที่มี
-SELECT M.*, FL.* FROM menus M, food_limitation FL
-WHERE (M.branch_id = 1) AND (M.food_limitation_id = FL.food_limitation_id);
+SELECT M.*, FL.* FROM menus M
+INNER JOIN food_limitation FL ON M.food_limitation_id = FL.food_limitation_id
+WHERE M.branch_id = 1;
 
 -- 47.Query - view_tables(branch_id) : ดูโต๊ะที่มีใน branch
 SELECT * FROM branch_tables
 WHERE branch_id = 1;
 
 -- 52.Query - view_report(report_id) : ดูรายละเอียดการ report ที่ต้องการ
-SELECT RS.restaurant_name, B.branch_id, R.* FROM reports R, branches B, restaurants RS
-WHERE (R.report_id = 1) AND (R.branch_id = B.branch_id) AND (B.restaurant_id = RS.restaurant_id);
+SELECT RS.restaurant_name, B.branch_id, R.* FROM reports R
+INNER JOIN branches B ON R.branch_id = B.branch_id
+INNER JOIN restaurants RS ON B.restaurant_id = RS.restaurant_id
+WHERE (R.report_id = 1);
 
 -- 53.Query - view_branch_report(branch_id) : ดูข้อมูลการ report ทั้งหมด ของ branch นั้น 
 SELECT * FROM reports
@@ -50,6 +53,10 @@ SELECT * FROM search_records
 WHERE search_id = 1;
 
 -- 61.Query - view_reserved_search_records() : ดูข้อมูล search record ทั้งหมดที่ถูกจองจริง
-SELECT U.user_name ,RS.restaurant_name, B.branch_id, SR.*, FL.*
-FROM search_records SR, reserves R, restaurants RS, branches B, users U, food_limitation FL, branch_tables BT
-WHERE (SR.user_id = U.user_id) AND (R.search_id = SR.search_id) AND (R.table_id = BT.table_id) AND (BT.branch_id = B.branch_id) AND (B.restaurant_id = RS.restaurant_id) AND (SR.food_limitation_id = FL.food_limitation_id);
+SELECT U.user_name ,RS.restaurant_name, B.branch_id, SR.*, FL.* FROM search_records SR
+INNER JOIN reserves R ON R.search_id = SR.search_id
+INNER JOIN branch_tables BT ON R.table_id = BT.table_id
+INNER JOIN branches B ON BT.branch_id = B.branch_id
+INNER JOIN restaurants RS ON B.restaurant_id = RS.restaurant_id
+INNER JOIN users U ON SR.user_id = U.user_id
+INNER JOIN food_limitation FL ON SR.food_limitation_id = FL.food_limitation_id;
