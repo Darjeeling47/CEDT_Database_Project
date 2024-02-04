@@ -1,3 +1,8 @@
+-- 6.delete_user : ลบข้อมูล user ที่ต้องการ
+DELETE FROM admins WHERE user_id = 1;
+DELETE FROM restaurant_managers WHERE user_id = 1;
+DELETE FROM users WHERE user_id = 1;
+
 -- 10.view_restaurants : ดูข้อมูลร้านอาหารทั้งหมดที่มี
 SELECT * FROM restaurants;
 
@@ -8,6 +13,98 @@ WHERE restaurant_id = 1;
 SELECT branch_id, province_id, branch_type, open_time, close_time, telephone_number, rating, max_capacity, parking_amount
 FROM branches
 WHERE restaurant_id = 1;
+
+-- 12.calculate_max_capacity : function สำหรับ trigger หลัง insert + update + delete โต๊ะใน branch 
+-- -> ทำการคำนวณจำนวนโต๊ะทั้งหมดที่ branch นั้นๆ มี แล้วเก็บใน attribute ใน table ของ branch นั้น
+CREATE OR REPLACE FUNCTION calculate_branch_max_capacity_for_insert_update()
+  RETURNS TRIGGER
+  LANGUAGE plpgsql
+  AS 
+$$
+BEGIN
+  UPDATE branches
+  SET max_capacity = (SELECT SUM(max_capacity) FROM branch_tables
+    WHERE branch_id = NEW.branch_id)
+  WHERE branch_id = NEW.branch_id;
+  RETURN NEW;
+END;
+$$
+
+CREATE OR REPLACE TRIGGER inserting_and_updating_branch_tables
+  AFTER INSERT OR UPDATE OF max_capacity
+  ON branch_tables
+  FOR EACH ROW
+  EXECUTE PROCEDURE calculate_branch_max_capacity_for_insert_update()
+
+CREATE OR REPLACE FUNCTION calculate_branch_max_capacity_for_delete()
+  RETURNS TRIGGER
+  LANGUAGE plpgsql
+  AS 
+$$
+BEGIN
+  UPDATE branches
+  SET max_capacity = (SELECT SUM(max_capacity) FROM branch_tables
+    WHERE branch_id = OLD.branch_id)
+  WHERE branch_id = OLD.branch_id;
+  RETURN OLD;
+END;
+$$
+  
+CREATE OR REPLACE TRIGGER deleting_branch_tables
+  AFTER DELETE
+  ON branch_tables
+  FOR EACH ROW
+  EXECUTE PROCEDURE calculate_branch_max_capacity_for_delete()
+
+-- 13.calculate_menu_price : function สำหรับ trigger หลัง insert + update + delete menu ใน branch
+-- -> ทำการคำนวณราคา avg, min, max ของ menuทั้งหมดที่ branch นั้นๆ มี แล้วเก็บใน attribute ใน table ของ branch นั้น
+CREATE OR REPLACE FUNCTION calculate_branch_menu_price_for_insert_update()
+  RETURNS TRIGGER
+  LANGUAGE plpgsql
+  AS 
+$$
+BEGIN
+  UPDATE branches
+  SET avg_price = (SELECT AVG(price) FROM menus
+    WHERE branch_id = NEW.branch_id), 
+  min_price = (SELECT MIN(price) FROM menus
+    WHERE branch_id = NEW.branch_id),
+  max_price = (SELECT MAX(price) FROM menus
+    WHERE branch_id = NEW.branch_id)
+  WHERE branch_id = NEW.branch_id;
+  RETURN NEW;
+END;
+$$
+
+CREATE OR REPLACE TRIGGER inserting_and_updating_branch_menus
+  AFTER INSERT OR UPDATE OF price
+  ON menus
+  FOR EACH ROW
+  EXECUTE PROCEDURE calculate_branch_menu_price_for_insert_update()
+
+CREATE OR REPLACE FUNCTION calculate_branch_menu_price_for_delete()
+  RETURNS TRIGGER
+  LANGUAGE plpgsql
+  AS 
+$$
+BEGIN
+  UPDATE branches
+  SET avg_price = (SELECT AVG(price) FROM menus
+    WHERE branch_id = OLD.branch_id), 
+  min_price = (SELECT MIN(price) FROM menus
+    WHERE branch_id = OLD.branch_id),
+  max_price = (SELECT MAX(price) FROM menus
+    WHERE branch_id = OLD.branch_id)
+  WHERE branch_id = OLD.branch_id;
+  RETURN OLD;
+END;
+$$
+
+CREATE OR REPLACE TRIGGER deleting_branch_tables
+  AFTER DELETE
+  ON menus
+  FOR EACH ROW
+  EXECUTE PROCEDURE calculate_branch_menu_price_for_delete()
 
 -- 21.add_food_limitation : เพิ่ม food limitation ตามข้อมูลที่ใส่มา
 INSERT INTO food_limitations(have_cow_milk, have_egg, have_tree_nut, have_peanut, have_shellfish, have_fish, have_soy, have_wheat, have_sesame, is_halal, is_kosher, is_vegeterian, is_zhai)
@@ -35,6 +132,17 @@ INNER JOIN branches B ON B.restaurant_id = R.restaurant_id
 INNER JOIN branch_locations BL ON BL.branch_id = B.branch_id
 WHERE BL.district = 'Houston'
 ORDER BY R.restaurant_name ASC;
+
+-- 41.delete_branch : ลบ branch นั้น พร้อม branch location
+DELETE FROM branch_locations WHERE branch_id = 1;
+DELETE FROM reports WHERE branch_id = 1;
+DELETE FROM menus WHERE branch_id = 1;
+DELETE FROM reserves WHERE table_id IN (
+  SELECT table_id FROM branch_tables
+  WHERE branch_id = 1
+);
+DELETE FROM branch_tables WHERE branch_id = 1;
+DELETE FROM branches WHERE branch_id = 1;
 
 -- 62.view_reserve_statistics : Restaurant manager ดูสถิติการจองที่ผ่านมาของ branch 
 -- group by user_id

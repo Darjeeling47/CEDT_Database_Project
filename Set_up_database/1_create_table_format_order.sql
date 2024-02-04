@@ -37,6 +37,9 @@ CREATE TABLE branches(
 	rating NUMERIC DEFAULT 0, -- Rating of the branch
 	max_capacity INT DEFAULT 0, -- Maximum capacity of the branch
 	parking_amount INT DEFAULT 0, -- Amount of parking available
+	avg_price REAL DEFAULT 0, -- Average price of menus in this branch
+	min_price REAL DEFAULT 0, -- Minimum price of menus in this branch
+	max_price REAL DEFAULT 0, -- Maximum price of menus in this branch
 	restaurant_id INT NOT NULL, -- Foreign key referencing restaurant_id in restaurants table
 	PRIMARY KEY(branch_id), -- Primary key constraint
 	FOREIGN KEY(province_id) REFERENCES provinces(province_id), -- Foreign key constraint
@@ -93,7 +96,7 @@ CREATE TABLE menus(
 	menu_name VARCHAR(255) NOT NULL, -- Name of the menu
 	price INT DEFAULT 0, -- Price of the menu
 	menu_type VARCHAR(255) NOT NULL, -- Type of the menu
-	picture TEXT NULL, -- Picture of the menu
+	picture TEXT DEFAULT NULL, -- Picture of the menu
 	food_limitation_id INT NOT NULL, -- Foreign key referencing food_limitation_id in foodlimitation table
 	PRIMARY KEY(menu_id), -- Primary key constraint
 	FOREIGN KEY(branch_id) REFERENCES branches(branch_id), -- Foreign key constraint
