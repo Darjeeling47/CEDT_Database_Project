@@ -30,6 +30,10 @@ DELETE from menus WHERE menu_id = 9 ;
 
 DELETE from menus WHERE branch_id = 10 AND menu_name = 'New Menu' ;
 
+-- 46.add_table : เพิ่มโต๊ะไปยัง branch ที่เลือก
+INSERT INTO branch_tables (table_number,max_capacity,branch_id) 
+VALUES (3,3,4);
+
 -- 48.edit_table : แก้ไขข้อมูลของ table ที่ต้องการ
 UPDATE branch_tables
 SET max_capacity = 10
@@ -38,10 +42,6 @@ WHERE table_id = 8;
 UPDATE branch_tables
 SET max_capacity = 6
 WHERE table_number = 2 AND branch_id = 4 ;
-
--- 46.add_table : เพิ่มโต๊ะไปยัง branch ที่เลือก
-INSERT INTO branch_tables (table_number,max_capacity,branch_id) 
-VALUES (3,3,4);
 
 -- 49.delete_table : ลบ table ที่ต้องการ
 DELETE from branch_tables WHERE table_id = 8 ;
@@ -60,7 +60,7 @@ SELECT report_id,  report_description, is_service_issue, is_hygiene_issue, is_ot
 WHERE branch_id = 1
 ORDER BY branch_id ASC, report_id ASC;
 
---54.admin_view_reports : Admin ดู report ของร้านอาหารในจังหวัดที่รับผิดชอบ (report_id, restaurant_name, branch_id, user_name, report_description, all Flag)
+-- 54.admin_view_reports : Admin ดู report ของร้านอาหารในจังหวัดที่รับผิดชอบ (report_id, restaurant_name, branch_id, user_name, report_description, all Flag)
 SELECT r.report_id, res.restaurant_name, r.branch_id, u.user_name, r.report_description, r.is_service_issue, r.is_hygiene_issue, r.is_other_issue FROM reports r
 INNER JOIN branches b ON r.branch_id = b.branch_id
 INNER JOIN restaurants res ON b.restaurant_id = res.restaurant_id
@@ -68,7 +68,7 @@ INNER JOIN admins ad ON ad.user_id = r.user_id
 INNER JOIN users u ON ad.user_id = u.user_id
 WHERE ad.user_id = 5 ;
 
---55.restaurant_manager_view_reports : Restaurant manager ดู report ของ branch ทั้งหมดที่รับผิดชอบ (report_id, branch_id, report_description, all Flag)
+-- 55.restaurant_manager_view_reports : Restaurant manager ดู report ของ branch ทั้งหมดที่รับผิดชอบ (report_id, branch_id, report_description, all Flag)
 SELECT r.report_id, r.branch_id, r.report_description, r.is_service_issue, r.is_hygiene_issue, r.is_other_issue FROM reports r
 INNER JOIN branches b ON r.branch_id = b.branch_id
 INNER JOIN restaurants res ON b.restaurant_id = res.restaurant_id
