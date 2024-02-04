@@ -18,13 +18,20 @@ SELECT * FROM timeslots
 WHERE timeslot_date = '2024-02-03';
 
 -- 27.Query - view_reserve(reserve_id) : ดูการจองที่ต้องการ
-SELECT U.user_name, T.timeslot_date, T.start_time, T.end_time, RS.restaurant_name, B.branch_id, BT.table_number 
-FROM reserves R, users U, timeslots T, branch_tables BT, branches B, restaurants RS
-WHERE (R.user_id = U.user_id) AND (R.time_slot_id = T.timeslot_id) AND (BT.branch_id = B.branch_id) AND (B.restaurant_id = RS.restaurant_id) AND (BT.table_id = R.table_id) AND U.user_id = 1;
+SELECT U.user_name, T.timeslot_date, T.start_time, T.end_time, RS.restaurant_name, B.branch_id, BT.table_number FROM reserves R
+INNER JOIN users U ON R.user_id = U.user_id
+INNER JOIN timeslots T ON R.time_slot_id = T.timeslot_id
+INNER JOIN branch_tables BT ON BT.branch_id = B.branch_id
+INNER JOIN branches B ON B.restaurant_id = RS.restaurant_id
+INNER JOIN restaurants RS ON BT.table_id = R.table_id
+WHERE U.user_id = 1;
 
 -- 38.Query - restaurant_manager_view_branches(user_id) : Restaurant manager ข้อมูล branch ทั้งหมดที่ดูแลอยู่
-SELECT RS.restaurant_name, B.*, BL.* FROM restaurants RS, branches B, branch_locations BL, restaurant_managers RM
-WHERE (RM.user_id = a) AND (RM.restaurant_id = RS.restaurant_id) AND (B.restaurant_id = RS.restaurant_id) AND (BL.branch_id = B.branch_id);
+SELECT RS.restaurant_name, B.*, BL.* FROM restaurants RS
+INNER JOIN branches B ON B.restaurant_id = RS.restaurant_id
+INNER JOIN branch_locations BL ON BL.branch_id = B.branch_id
+INNER JOIN restaurant_managers RM ON RM.restaurant_id = RS.restaurant_id
+WHERE RM.user_id = 1;
 
 -- 43.Query - view_menus(branch_id, เงื่อนไข filter) : ดูเมนูอาหารของ branch ตามเงื่อนไขที่มี
 SELECT M.*, FL.* FROM menus M
