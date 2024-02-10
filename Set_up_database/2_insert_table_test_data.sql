@@ -9,7 +9,12 @@ INSERT INTO provinces (country, province_name) VALUES
 ('Canada', 'Saskatchewan'),
 ('USA', 'Ohio'),
 ('Canada', 'Nova Scotia'),
-('USA', 'Michigan');
+('USA', 'Michigan'),
+('Thailand', 'Bangkok'),
+('Thailand', 'ChangMai'),
+('Thailand', 'Rayoung'),
+('Thailand', 'Chonburi'),
+('Thailand', 'Phuket');
 
 -- Users Table
 INSERT INTO users (user_name, user_password, email, telephone_number) VALUES
@@ -22,7 +27,13 @@ INSERT INTO users (user_name, user_password, email, telephone_number) VALUES
 ('chris_miller', 'chrispass', 'chris@example.com', '33333333'),
 ('amy_jackson', 'amypass', 'amy@example.com', '44444444'),
 ('steven_thomas', 'stevenpass', 'steven@example.com', '66666666'),
-('jennifer_harris', 'jenniferpass', 'jennifer@example.com', '77777777');
+('jennifer_harris', 'jenniferpass', 'jennifer@example.com', '77777777'),
+('gift_tip', 'giftpass', 'gift@example.com', '888888888'),
+('prame_supawit', 'pramepass', 'prame@example.com', '999999999'),
+('ping_chanya', 'pingpass', 'ping@example.com', '101010101'),
+('wit_wit', 'witpass', 'wit@example.com', '121212121'),
+('puth_ramida', 'puthpass', 'puth@example.com', '13131313131'),
+('kan_kanchai', 'kanpass', 'kan@example.com', '141414141');
 
 -- Restaurants Table
 INSERT INTO restaurants (detail, restaurant_owner, restaurant_name, website) VALUES
@@ -48,7 +59,16 @@ INSERT INTO branches (province_id, branch_type, open_time, close_time, telephone
 (7, 'Main', '11:30', '21:00', '217-987-6543', 4.8, 130, 55, 7),
 (8, 'Main', '09:00', '20:00', '216-555-1234', 4.9, 80, 20, 8),
 (9, 'Main', '08:00', '22:00', '902-123-4567', 4.1, 105, 60, 9),
-(10, 'Main', '12:00', '23:00', '313-555-1234', 4.2, 115, 30, 10);
+(10, 'Main', '12:00', '23:00', '313-555-1234', 4.2, 115, 30, 10),
+(3, 'Second', '08:00', '22:00', '123-123-4567', 5.0, 90, 40, 1),
+(2, 'Third', '08:00', '22:00', '000-123-4567', 5.0, 90, 40, 1),
+(4, 'Second', '08:00', '23:00', '111-123-4567', 3.2, 90, 10, 2),
+(5, 'Second', '08:00', '00:00', '222-123-4567', 1.0, 90, 0, 3),
+(6, 'Fourth', '09:00', '10:00', '333-123-4567', 5.0, 90, 40, 1),
+(7, 'Second', '08:00', '12:00', '444-123-4567', 5.0, 90, 100, 4),
+(8, 'Second', '11:00', '16:00', '555-123-4567', 4.0, 90, 300, 5),
+(9, 'Second', '10:00', '19:00', '666-123-4567', 2.4, 90, 5, 6),
+(8, 'Second', '00:00', '23:00', '777-123-4567', 0.8, 90, 15, 7);
 
 -- Branch Locations Table
 INSERT INTO branch_locations (branch_id, house_number, lane, road, sub_district, district, postal_code) VALUES
@@ -153,6 +173,9 @@ INSERT INTO search_records (user_id, search_records_timestamp, location_link, fo
 -- Reserves Table
 INSERT INTO reserves (user_id, timeslot_id, table_id, preferred_name, amount, search_id) VALUES
 (1, 3, 7, 'John Doe', 1, 1),
+(1, 10, 7, 'John Doe', 1, 1),
+(1, 11, 7, 'John Doe', 1, 1),
+(1, 12, 7, 'John Doe', 1, 1),
 (2, 1, 7, 'Jane Smith', 2, 2),
 (3, 2, 7, 'Bob Jones', 1, 1),
 (4, 3, 9, 'Alice Wang', 1, 2),
