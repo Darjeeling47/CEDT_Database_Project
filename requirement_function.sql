@@ -15,21 +15,20 @@ INSERT INTO reserves (user_id, timeslot_id, table_id, preferred_name, amount, se
 VALUES(1, 3, 7, 'John Doe', 1, 1);
 
 -- 5. แสดงรายการร้านอาหารมีรายละเอียดประกอบด้วย ชื่อร้านอาหาร, ที่ตั้ง, เบอร์ติดต่อ และ เวลาเปิด - ปิด
-SELECT R.restaurant_name, B.branch_id, BL.house_number, BL.lane, BL.road, BL.sub_district, BL.district, P.province_name, P.country, B.open_time, B.close_time 
+SELECT R.restaurant_name, B.branch_id, BL.house_number, BL.lane, BL.road, BL.sub_district, BL.district, P.province_name, P.country, B.telephone_number, B.open_time, B.close_time 
 FROM branches B
 JOIN restaurants R ON B.restaurant_id = R.restaurant_id
 JOIN provinces P ON B.province_id = P.province_id
 JOIN branch_locations BL ON BL.branch_id = B.branch_id;
 
 -- 6. แสดงรายการจองของผู้ใช้งาน
-SELECT U.user_name, T.timeslot_date, T.start_time, T.end_time, RS.restaurant_name, B.branch_id, BT.table_number 
+SELECT T.timeslot_date, T.start_time, T.end_time, RS.restaurant_name, B.branch_id, BT.table_number 
 FROM reserves R
-INNER JOIN users U ON R.user_id = U.user_id
 INNER JOIN timeslots T ON R.timeslot_id = T.timeslot_id
 INNER JOIN branch_tables BT ON BT.table_id = R.table_id
 INNER JOIN branches B ON B.branch_id = BT.branch_id
 INNER JOIN restaurants RS ON B.restaurant_id = RS.restaurant_id
-WHERE U.user_id = 1;
+WHERE R.user_id = 1;
 
 -- 7. แก้ไขข้อมูลการจองของผู้ใช้งาน
 UPDATE reserves
