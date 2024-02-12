@@ -9,21 +9,18 @@ WHERE user_id = 1;
 -- 9.Query - delete_restaurant(restaurant_id) : ลบร้านอาหาร
 DELETE FROM restaurant WHERE restaurant_id = 1;
 
--- 12.Trigger - calculate_max_capacity() : function สำหรับ trigger หลัง insert + update + delete โต๊ะใน branch -> ทำการคำนวณจำนวนโต๊ะทั้งหมดที่ branch นั้นๆ มี แล้วเก็บใน attribute ใน table ของ branch นั้น
-
--- 13.Trigger - calculate_menu_price() : function สำหรับ trigger หลัง insert + update + delete menu ใน branch -> ทำการคำนวณราคา avg, min, max ของ menuทั้งหมดที่ branch นั้นๆ มี แล้วเก็บใน attribute ใน table ของ branch นั้น
-
 -- 18.Query - view_timeslots(วันที่) : ดู timeslot ทั้งหมดของวันนั้น
 SELECT * FROM timeslots
 WHERE timeslot_date = '2024-02-03';
 
 -- 27.Query - view_reserve(reserve_id) : ดูการจองที่ต้องการ
-SELECT U.user_name, T.timeslot_date, T.start_time, T.end_time, RS.restaurant_name, B.branch_id, BT.table_number FROM reserves R
+SELECT U.user_name, T.timeslot_date, T.start_time, T.end_time, RS.restaurant_name, B.branch_id, BT.table_number 
+FROM reserves R
 INNER JOIN users U ON R.user_id = U.user_id
-INNER JOIN timeslots T ON R.time_slot_id = T.timeslot_id
-INNER JOIN branch_tables BT ON BT.branch_id = B.branch_id
-INNER JOIN branches B ON B.restaurant_id = RS.restaurant_id
-INNER JOIN restaurants RS ON BT.table_id = R.table_id
+INNER JOIN timeslots T ON R.timeslot_id = T.timeslot_id
+INNER JOIN branch_tables BT ON BT.table_id = R.table_id
+INNER JOIN branches B ON B.branch_id = BT.branch_id
+INNER JOIN restaurants RS ON B.restaurant_id = RS.restaurant_id
 WHERE U.user_id = 1;
 
 -- 38.Query - restaurant_manager_view_branches(user_id) : Restaurant manager ข้อมูล branch ทั้งหมดที่ดูแลอยู่

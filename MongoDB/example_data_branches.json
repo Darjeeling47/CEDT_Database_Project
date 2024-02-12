@@ -1,0 +1,54 @@
+{
+  "_id": {
+    "$oid": "65c7508e9ab2ca6b2c16a5df"
+  },
+  "restaurant_id": {
+    "$oid": "65c75cb49ab2ca6b2c16a5f5"
+  },
+  "province_id": {
+    "$oid": "65c75cbb9ab2ca6b2c16a5f6"
+  },
+  "location": {
+    "house_number": "123/456",
+    "road": "Sukhumvit road",
+    "sub_district": "Saimai",
+    "district": "Don mueng",
+    "postal_code": "98765"
+  },
+  "branch_type": "International Food",
+  "open_time": "12:00",
+  "close_time": "20:00",
+  "telephone_number": "012-345-6789",
+  "rating": 3.7,
+  "parking_amount": 10,
+  "max_capacity": 50,
+  "avg_price": 150,
+  "min_price": 100,
+  "max_price": 600,
+  "tables": [
+    {
+      "table_id": "table-1-1",
+      "table_number": 12,
+      "max_capacity": 5
+    },
+    {
+      "table_id": "table-1-2",
+      "table_number": 16,
+      "max_capacity": 2
+    }
+  ],
+  "menus": [
+    {
+      "menu_name": "Ttoekpokki",
+      "price": 120,
+      "menu_type": "Korean Food",
+      "picture": "/picture/1.png",
+      "food_limitation": ["shellfish", "fish"]
+    },
+    {
+      "menu_name": "Vegetable Dumplings",
+      "price": 50,
+      "menu_type": "Chinese Food"
+    }
+  ]
+}

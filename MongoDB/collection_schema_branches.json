@@ -1,0 +1,165 @@
+{
+  "title": "branches",
+  "required": [
+    "_id",
+    "restaurant_id",
+    "province_id",
+    "location",
+    "open_time",
+    "close_time"
+  ],
+  "properties": {
+    "_id": { "bsonType": "objectId" },
+    "restaurant_id": { "bsonType": "objectId" },
+    "province_id": { "bsonType": "objectId" },
+    "location": {
+      "bsonType": "object",
+      "required": [
+        "house_number",
+        "road",
+        "sub_district",
+        "district",
+        "postal_code"
+      ],
+      "properties": {
+        "house_number": { "bsonType": "string" },
+        "lane": { "bsonType": "string" },
+        "road": { "bsonType": "string" },
+        "sub_district": { "bsonType": "string" },
+        "district": { "bsonType": "string" },
+        "postal_code": { "bsonType": "string" }
+      }
+    },
+    "branch_type": {
+      "bsonType": "string",
+      "enum": [
+        "Thai Food",
+        "Japanese Food",
+        "Italian Food",
+        "Mexican Food",
+        "Chinese Food",
+        "French Food",
+        "Indian Food",
+        "Greek Food",
+        "Spanish Food",
+        "Vietnamese Food",
+        "Korean Food",
+        "American Food",
+        "Lebanese Food",
+        "Turkish Food",
+        "Brazilian Food",
+        "Mediterranean Food",
+        "International Food",
+        "Fine Dining",
+        "Cafe",
+        "Bistro",
+        "Brasserie",
+        "Pizzeria",
+        "Steakhouse",
+        "Sushi Bar",
+        "Tapas Bar",
+        "Gastropub",
+        "Izakaya",
+        "Food Truck",
+        "Food Hall",
+        "Diner",
+        "Vegetarian / Vegan Restaurant",
+        "Farm-to-Table Restaurant",
+        "Teahouse",
+        "Buffet Restaurant",
+        "Fusion Restaurant",
+        "Pop-Up Restaurant",
+        "Others"
+      ]
+    },
+    "open_time": { "bsonType": "string", "pattern": "^[0-9]{2}:[0-9]{2}$" },
+    "close_time": { "bsonType": "string", "pattern": "^[0-9]{2}:[0-9]{2}$" },
+    "telephone_number": {
+      "bsonType": "string",
+      "pattern": "^([0-9]{2}|[0-9]{3})-[0-9]{3}-[0-9]{4}$"
+    },
+    "rating": { "bsonType": "number", "maximum": 5, "minimum": 0 },
+    "parking_amount": { "bsonType": "int", "minimum": 0 },
+    "max_capacity": { "bsonType": "int", "minimum": 0 },
+    "avg_price": { "bsonType": "number", "minimum": 0 },
+    "min_price": { "bsonType": "number", "minimum": 0 },
+    "max_price": { "bsonType": "number", "minimum": 0 },
+    "tables": {
+      "bsonType": "array",
+      "uniqueItems": true,
+      "items": {
+        "bsonType": "object",
+        "required": ["table_id", "table_number", "max_capacity"],
+        "properties": {
+          "table_id": { "bsonType": "string" },
+          "table_number": { "bsonType": "int" },
+          "max_capacity": { "bsonType": "int", "minimum": 1 }
+        }
+      }
+    },
+    "menus": {
+      "bsonType": "array",
+      "uniqueItems": true,
+      "items": {
+        "bsonType": "object",
+        "required": ["menu_name", "price", "menu_type"],
+        "properties": {
+          "menu_name": { "bsonType": "string" },
+          "price": { "bsonType": "number", "minimum": 0 },
+          "menu_type": {
+            "bsonType": "string",
+            "enum": [
+              "Thai Food",
+              "Japanese Food",
+              "Italian Food",
+              "Mexican Food",
+              "Chinese Food",
+              "French Food",
+              "Indian Food",
+              "Greek Food",
+              "Spanish Food",
+              "Vietnamese Food",
+              "Korean Food",
+              "American Food",
+              "Lebanese Food",
+              "Turkish Food",
+              "Brazilian Food",
+              "Mediterranean Food",
+              "International Food",
+              "Steak",
+              "Salad",
+              "Bakery",
+              "Drink & Beverage",
+              "Dessert",
+              "Others"
+            ]
+          },
+          "picture": { "bsonType": "string" },
+          "food_limitation": {
+            "bsonType": "array",
+            "uniqueItems": true,
+            "items": {
+              "bsonType": "string",
+              "enum": [
+                "Cow Milk",
+                "Egg",
+                "Treenut",
+                "Peanut",
+                "Shellfish",
+                "Fish",
+                "Soy",
+                "Wheat",
+                "Sesame",
+                "Halal",
+                "Kosher",
+                "Vegeterian",
+                "Zhai",
+                "Others"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
